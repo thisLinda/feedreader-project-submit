@@ -8,7 +8,7 @@
 //hColleen code shared on Slack https://github.com/hColleen/frontend-nanodegree-feedreader/blob/master/jasmine/spec/feedreader.js
 //https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
 
-//DESCRIPTIVE `it` notation, concise as possible!
+//DESCRIPTIVE & concise `it` notation
 
 /* feedreader.js
  * This is the spec file that Jasmine will read and contains
@@ -19,12 +19,16 @@
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
+
 $(function () {
+
     /* This is our first test suite - a test suite just contains
      * a related set of tests. This suite is all about the RSS
      * feeds definitions, the allFeeds variable in our application.
      */
+
     describe('RSS Feeds', function () {
+
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -32,16 +36,17 @@ $(function () {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
+
         it('allFeeds variable is defined & not empty', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+
         it('each feed url defined & not empty', function () {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
@@ -49,11 +54,11 @@ $(function () {
             }
         });
 
-
         /* Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
         it('feed name defined & not empty', function () {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
@@ -62,8 +67,8 @@ $(function () {
         });
     });
 
-
     /* Write a new test suite named "The menu" */
+
     describe('The menu', function () {
 
         /* Write a test that ensures the menu element is
@@ -81,6 +86,7 @@ $(function () {
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
+
         it('menu changes visibility on click', function () {
             $('.menu-icon-link').click();
             expect($('body').hasClass('menu-hidden')).toBe(false);
@@ -90,7 +96,7 @@ $(function () {
         });
     });
 
-    //asynchronous code instruction and code from Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
+    //asynchronous code instruction and code written by Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
     /*Write a new test suite named "Initial Entries" */
 
     describe('Initial Entries', function () {
@@ -108,14 +114,21 @@ $(function () {
 
         it('when loadFeed function is called/done there is at least 1 entry found', function () {
             expect($('.feed .entry').length).toBeGreaterThan(0);
-        })
+        });
     });
 
-    /* Write a new test suite named "New Feed Selection" */
-    //placement of variables in consideration of scope (and asynchronous code as noted above), instructed by and code written by Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
+    /* Write a new test suite named "New Feed Selection"
+     * placement of variables in consideration of scope (and asynchronous code as noted above), instructed by and code written by Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
+     */
+
     describe('New Feed Selection', function () {
         let feedOne;
         let feedTwo;
+
+        /* Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
 
         beforeEach(done => {
             loadFeed(0, function () {
@@ -132,9 +145,4 @@ $(function () {
             expect(feedOne === feedTwo).toBe(false);
         });
     });
-
-    /* Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
 }());

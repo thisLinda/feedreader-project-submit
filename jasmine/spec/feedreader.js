@@ -27,7 +27,7 @@ $(function () {
      * feeds definitions, the allFeeds variable in our application.
      */
 
-    describe('RSS Feeds', function () {
+    describe('RSS Feeds', () => {
 
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -37,7 +37,7 @@ $(function () {
          * page?
          */
 
-        it('allFeeds variable is defined & not empty', function () {
+        it('allFeeds variable is defined & not empty', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -47,10 +47,10 @@ $(function () {
          * and that the URL is not empty.
          */
 
-        it('each feed url defined & not empty', function () {
+        it('each feed url defined & not empty', () => {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds.length).not.toBe(0);
+                expect(allFeeds[i].url).not.toBe(0);
             }
         });
 
@@ -59,17 +59,17 @@ $(function () {
          * and that the name is not empty.
          */
 
-        it('feed name defined & not empty', function () {
+        it('feed name defined & not empty', () => {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds.length).not.toBe(0);
+                expect(allFeeds[i].name).not.toBe(0);
             }
         });
     });
 
     /* Write a new test suite named "The menu" */
 
-    describe('The menu', function () {
+    describe('The menu', () => {
 
         /* Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -77,7 +77,7 @@ $(function () {
          * hiding/showing of the menu element.
          */
 
-        it('menu is hidden by default', function () {
+        it('menu is hidden by default', () => {
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
@@ -87,7 +87,7 @@ $(function () {
          * clicked and does it hide when clicked again.
          */
 
-        it('menu changes visibility on click', function () {
+        it('menu changes visibility on click', () => {
             $('.menu-icon-link').click();
             expect($('body').hasClass('menu-hidden')).toBe(false);
 
@@ -99,7 +99,7 @@ $(function () {
     //asynchronous code instruction and code written by Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
     /*Write a new test suite named "Initial Entries" */
 
-    describe('Initial Entries', function () {
+    describe('Initial Entries', () => {
 
         /* Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -112,7 +112,7 @@ $(function () {
             loadFeed(0, done);
         });
 
-        it('when loadFeed function is called/done there is at least 1 entry found', function () {
+        it('when loadFeed function is called/done there is at least 1 entry found', () => {
             expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
@@ -121,7 +121,7 @@ $(function () {
      * placement of variables in consideration of scope (and asynchronous code as noted above), instructed by and code written by Lloan Alas https://udenver.zoom.us/recording/play/-1Agy4wDME0_ab_zaNUiWquZOWdb4qQvCJENURKWT4CDtHWqXrE0yI7DSi8kfvm5?continueMode=true
      */
 
-    describe('New Feed Selection', function () {
+    describe('New Feed Selection', () => {
         let feedOne;
         let feedTwo;
 
@@ -131,17 +131,17 @@ $(function () {
          */
 
         beforeEach(done => {
-            loadFeed(0, function () {
+            loadFeed(0, () => {
                 feedOne = $('.feed').html();
-                done();
+                //done();
             });
-            loadFeed(0, function () {
+            loadFeed(1, () => {
                 feedTwo = $('.feed').html();
                 done();
             });
         });
 
-        it('check for content change on new loadFeed function call', function () {
+        it('check for content change on new loadFeed function call', () => {
             expect(feedOne === feedTwo).toBe(false);
         });
     });
